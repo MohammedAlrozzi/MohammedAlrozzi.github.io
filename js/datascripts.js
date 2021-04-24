@@ -31,7 +31,7 @@ function makeChart(covid19) {
         return +d.TotalTests;
     });
     var postive_Rate = covid19.map(function (d) {
-        return +(d.DailyCases/d.DailyTests)*100;
+        return +Math.round((d.DailyCases/d.DailyTests)*100);
     });
     var chart = new Chart('chart2', {
         type: "bar",
@@ -431,7 +431,7 @@ function makeChart(covid19) {
                     gridLines: {
                         display: true,
                         lineWidth: 1,
-                        color: "rgba(0,0,0,0.30)"
+                        color: "rgba(0,0,0,0.50)"
                     },
                     ticks: {
                         beginAtZero: true,
