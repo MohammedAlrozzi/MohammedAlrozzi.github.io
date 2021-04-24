@@ -30,6 +30,9 @@ function makeChart(covid19) {
     var Total_tests = covid19.map(function (d) {
         return +d.TotalTests;
     });
+    var postive_Rate = covid19.map(function (d) {
+        return +(d.DailyCases/d.DailyTests)*100;
+    });
     var chart = new Chart('chart2', {
         type: "bar",
         options: {
@@ -415,6 +418,64 @@ function makeChart(covid19) {
 
                 }
                 ,
+            ]
+        }
+    });
+    var chart = new Chart('postiveRate', {
+        type: "line",
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    id: 'y-axis-0',
+                    gridLines: {
+                        display: true,
+                        lineWidth: 1,
+                        color: "rgba(0,0,0,0.30)"
+                    },
+                    ticks: {
+                        beginAtZero: true,
+                        mirror: false,
+                        suggestedMin: 0,
+                    },
+                    afterBuildTicks: function (chart) {
+
+                    }
+                }],
+                xAxes: [{
+                    id: 'x-axis-0',
+                    gridLines: {
+                        display: false,
+                    },
+                    ticks: {
+                        beginAtZero: false,
+                        callback: function (label) {
+                            var date = label.split("-")[0];
+                            var month = label.split("-")[1];
+                            var year = label.split("-")[2]
+                            return date + "/" + month;
+                        }
+                    }
+                },
+                ]
+            },
+            legend: {
+                display: true,
+
+            }
+        },
+
+        data: {
+            labels: covidLabels,
+            datasets: [
+                {
+                    data: postive_Rate,
+                    label: "Postive rate (%)",
+                    backgroundColor: '#408bd670',
+
+
+                },
+
             ]
         }
     });
