@@ -538,7 +538,7 @@ function makeVaccineCharts(vaccines) {
                             var date = label.split("-")[0];
                             var month = label.split("-")[1];
                             var year = label.split("-")[2];
-                            if (date + month === "2702" || date + month === "2103" || date + month === "1004" || date + month === "1101") {
+                            if (date + month === "2702" || date + month === "2103" || date + month === "1004" || date + month === "0605") {
                                 return month + "/" + year;
                             }
                             else {
